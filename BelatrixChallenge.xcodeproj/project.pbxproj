@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DBEDB89D3C7D6F74060937D /* Pods_BelatrixChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C85252FD071C955425ADE848 /* Pods_BelatrixChallenge.framework */; };
 		C1119F24235C251F00397A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F23235C251F00397A86 /* AppDelegate.swift */; };
 		C1119F26235C251F00397A86 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F25235C251F00397A86 /* MoviesViewController.swift */; };
 		C1119F29235C251F00397A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1119F27235C251F00397A86 /* Main.storyboard */; };
@@ -17,9 +18,15 @@
 		C1119F3D235C2EDF00397A86 /* MovieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F3C235C2EDF00397A86 /* MovieInteractor.swift */; };
 		C1119F40235C300300397A86 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F3F235C300300397A86 /* MovieModel.swift */; };
 		C1119F42235C30A400397A86 /* MovieModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F41235C30A400397A86 /* MovieModuleBuilder.swift */; };
+		C1119F45235CFC0600397A86 /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F44235CFC0600397A86 /* HttpRouter.swift */; };
+		C1119F47235CFC2500397A86 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F46235CFC2500397A86 /* HttpService.swift */; };
+		C1119F49235D031F00397A86 /* MovieHttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F48235D031F00397A86 /* MovieHttpService.swift */; };
+		C1119F4B235D038500397A86 /* MovieHttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F4A235D038500397A86 /* MovieHttpRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B00E59368AB9D9A4047D1BE /* Pods-BelatrixChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BelatrixChallenge.debug.xcconfig"; path = "Target Support Files/Pods-BelatrixChallenge/Pods-BelatrixChallenge.debug.xcconfig"; sourceTree = "<group>"; };
+		9386F5E23DEE08E8AE7EA12C /* Pods-BelatrixChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BelatrixChallenge.release.xcconfig"; path = "Target Support Files/Pods-BelatrixChallenge/Pods-BelatrixChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		C1119F20235C251F00397A86 /* BelatrixChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BelatrixChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1119F23235C251F00397A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1119F25235C251F00397A86 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +39,11 @@
 		C1119F3C235C2EDF00397A86 /* MovieInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInteractor.swift; sourceTree = "<group>"; };
 		C1119F3F235C300300397A86 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		C1119F41235C30A400397A86 /* MovieModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModuleBuilder.swift; sourceTree = "<group>"; };
+		C1119F44235CFC0600397A86 /* HttpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRouter.swift; sourceTree = "<group>"; };
+		C1119F46235CFC2500397A86 /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
+		C1119F48235D031F00397A86 /* MovieHttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHttpService.swift; sourceTree = "<group>"; };
+		C1119F4A235D038500397A86 /* MovieHttpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHttpRouter.swift; sourceTree = "<group>"; };
+		C85252FD071C955425ADE848 /* Pods_BelatrixChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BelatrixChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +51,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DBEDB89D3C7D6F74060937D /* Pods_BelatrixChallenge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		122F81AEBD77B54E0F93DE5A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1B00E59368AB9D9A4047D1BE /* Pods-BelatrixChallenge.debug.xcconfig */,
+				9386F5E23DEE08E8AE7EA12C /* Pods-BelatrixChallenge.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AB7C30B3A81332EB39EC2EE2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C85252FD071C955425ADE848 /* Pods_BelatrixChallenge.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C1119F17235C251F00397A86 = {
 			isa = PBXGroup;
 			children = (
 				C1119F22235C251F00397A86 /* BelatrixChallenge */,
 				C1119F21235C251F00397A86 /* Products */,
+				122F81AEBD77B54E0F93DE5A /* Pods */,
+				AB7C30B3A81332EB39EC2EE2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +96,7 @@
 		C1119F22235C251F00397A86 /* BelatrixChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				C1119F43235CFBBD00397A86 /* Service */,
 				C1119F3E235C2FEB00397A86 /* Entity */,
 				C1119F35235C2CF100397A86 /* MoviesModule */,
 				C1119F23235C251F00397A86 /* AppDelegate.swift */,
@@ -95,6 +128,17 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		C1119F43235CFBBD00397A86 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C1119F44235CFC0600397A86 /* HttpRouter.swift */,
+				C1119F46235CFC2500397A86 /* HttpService.swift */,
+				C1119F48235D031F00397A86 /* MovieHttpService.swift */,
+				C1119F4A235D038500397A86 /* MovieHttpRouter.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -102,9 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1119F32235C252100397A86 /* Build configuration list for PBXNativeTarget "BelatrixChallenge" */;
 			buildPhases = (
+				8FB800D1660BEAC71DD160EB /* [CP] Check Pods Manifest.lock */,
 				C1119F1C235C251F00397A86 /* Sources */,
 				C1119F1D235C251F00397A86 /* Frameworks */,
 				C1119F1E235C251F00397A86 /* Resources */,
+				2C0E145F9EE17EDF48A72905 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,6 +207,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2C0E145F9EE17EDF48A72905 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BelatrixChallenge/Pods-BelatrixChallenge-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BelatrixChallenge/Pods-BelatrixChallenge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8FB800D1660BEAC71DD160EB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BelatrixChallenge-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C1119F1C235C251F00397A86 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -170,6 +263,10 @@
 				C1119F3D235C2EDF00397A86 /* MovieInteractor.swift in Sources */,
 				C1119F42235C30A400397A86 /* MovieModuleBuilder.swift in Sources */,
 				C1119F26235C251F00397A86 /* MoviesViewController.swift in Sources */,
+				C1119F49235D031F00397A86 /* MovieHttpService.swift in Sources */,
+				C1119F45235CFC0600397A86 /* HttpRouter.swift in Sources */,
+				C1119F4B235D038500397A86 /* MovieHttpRouter.swift in Sources */,
+				C1119F47235CFC2500397A86 /* HttpService.swift in Sources */,
 				C1119F3B235C2EA600397A86 /* MovieRouter.swift in Sources */,
 				C1119F39235C2E3A00397A86 /* MoviePresenter.swift in Sources */,
 				C1119F24235C251F00397A86 /* AppDelegate.swift in Sources */,
@@ -316,6 +413,7 @@
 		};
 		C1119F33235C252100397A86 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B00E59368AB9D9A4047D1BE /* Pods-BelatrixChallenge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -333,6 +431,7 @@
 		};
 		C1119F34235C252100397A86 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9386F5E23DEE08E8AE7EA12C /* Pods-BelatrixChallenge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
