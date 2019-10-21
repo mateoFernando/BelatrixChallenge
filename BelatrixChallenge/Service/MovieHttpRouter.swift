@@ -9,7 +9,7 @@
 import Alamofire
 
 enum MovieHttpRouter {
-    case getMoviesCategories
+    case getPopularMovies(page:Int)
     case getMovies(categoryId: String)
 
     case getFilteredMovies
@@ -21,15 +21,15 @@ enum MovieHttpRouter {
 extension MovieHttpRouter : HttpRouter {
     
     var baseUrlString: String {
-        return "https://asdasd"
+        return "https://api.trakt.tv/"
     }
     
     var path: String {
         switch (self) {
         case .getFilteredMovies:
-            return "/asd"
-        case .getMoviesCategories:
-            return "/asd"
+            return ""
+        case .getPopularMovies:
+            return "movies/popular"
         case .getMovies(let categoryId):
             return "/asd/{\(categoryId)}"
         case .downloadImage(let imageName):
@@ -46,17 +46,24 @@ extension MovieHttpRouter : HttpRouter {
     
     var headers: HTTPHeaders? {
         return [
-            "Content-Type" : "application/json; charset=UTF-8"
+            "Content-Type" : "application/json",
+            "trakt-api-version" : "2",
+            "trakt-api-key" : "e674d0e14d4c2c5557db80b92120511bdac61bb3bebf228adfb258a7c861d71d"
         ]
     }
     
     var parameters: Parameters? {
-        return nil
+        switch self {
+        case .getPopularMovies(let page):
+            return ["page" : "\(page)"]
+        default:
+            return nil
+        }
     }
     
     func body() throws -> Data? {
         switch self {
-        case .getFilteredMovies, .getMoviesCategories, .getMovies, .downloadThumbnail, .downloadImage:
+        case .getFilteredMovies, .getPopularMovies, .getMovies, .downloadThumbnail, .downloadImage:
             return nil
         }
     }

@@ -14,9 +14,13 @@ class MoviewModuleBuilder {
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let view = storyboard.instantiateViewController(withIdentifier: "MoviesViewController") as! MoviesViewController
-        let interactor = MovieInteractor()
+        let interactor = MovieInteractor(service: MoviesService.shared)
+        let imageInteractor = ImageInteractor(service: MoviesService.shared)
         let router = MovieRouter(view:view)
-        let presenter = MoviePresenter(view: view, interactor: interactor, router: router)
+        let presenter = MoviePresenter(view: view, interactor: interactor, router: router,useCase:(
+            getPopularMovies: interactor.getPopularMovies,
+            getFilteredMovies: interactor.getPopularMovies,
+            fetchThumbnail: imageInteractor.fetchThumbnail )  )
         view.presenter = presenter
         return view
     }

@@ -6,6 +6,28 @@
 //  Copyright © 2019 Fer. All rights reserved.
 //
 
-struct MovieModel {
-    let movieName : String
+struct MovieModel : Codable {
+    let title : String
+    let year : Int
+    let ids : MovieDetail
+    
+    private enum CodingKeys: String, CodingKey {
+        case title
+        case year
+        case ids
+    }
+}
+
+struct MovieDetail : Codable {
+    let trakt : Int
+    let slug : String
+    let imdb : String
+    let tmdb : Int
+    
+    private enum CodingKeys : String, CodingKey {
+        case trakt
+        case slug
+        case imdb
+        case tmdb
+    }
 }

@@ -7,15 +7,21 @@
 //
 
 protocol MovieUseCase {
-    func getTestTitle() -> MovieModel
 }
 
-class MovieInteractor { }
+class MovieInteractor {
+    
+    var service : MoviesAPI
+    
+    init(service: MoviesAPI) {
+        self.service = service
+    }
+    
+}
 
 extension MovieInteractor : MovieUseCase {
     
-    func getTestTitle() -> MovieModel {
-        
-        return MovieModel(movieName: "Kill Bill")
+    func getPopularMovies(completion: @escaping MoviesClosure) -> (Void) {
+        self.service.fetchPopularMoviews(completion: completion)
     }
 }
