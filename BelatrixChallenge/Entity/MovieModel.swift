@@ -7,9 +7,9 @@
 //
 
 struct MovieModel : Codable {
-    let title : String
-    let year : Int
-    let ids : MovieDetail
+    let title : String?
+    let year : Int?
+    let ids : MovieDetail?
     
     private enum CodingKeys: String, CodingKey {
         case title
@@ -19,10 +19,10 @@ struct MovieModel : Codable {
 }
 
 struct MovieDetail : Codable {
-    let trakt : Int
-    let slug : String
-    let imdb : String
-    let tmdb : Int
+    let trakt : Int?
+    let slug : String?
+    let imdb : String?
+    let tmdb : Int?
     
     private enum CodingKeys : String, CodingKey {
         case trakt

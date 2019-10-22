@@ -13,7 +13,7 @@ protocol MovieView: class {
     func updateMovies(movies: [MovieModel]) -> Void
 }
 
-class MoviesViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, LoadMoreControlDelegate {
+class MoviesViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, LoadMoreControlDelegate , UISearchControllerDelegate {
     
     
     @IBOutlet var movies: UITableView!
@@ -21,6 +21,7 @@ class MoviesViewController: UIViewController , UITableViewDelegate , UITableView
     var presenter: MoviePresentation!
     var arrayOfMovies : [MovieModel] = []
     var pagination = 1
+    var paginationForFilter = 1
     
     fileprivate var loadMoreControl: LoadMoreControl!
     let searchController = UISearchController(searchResultsController: nil)
@@ -37,15 +38,17 @@ class MoviesViewController: UIViewController , UITableViewDelegate , UITableView
         loadMoreControl = LoadMoreControl(scrollView: movies, spacingFromLastCell: 10, indicatorHeight: 60)
         loadMoreControl.delegate = self
         
-        // 1
+        
+        searchController.delegate = self
+        
         searchController.searchResultsUpdater = self
-        // 2
+        
         searchController.obscuresBackgroundDuringPresentation = false
-        // 3
+        
         searchController.searchBar.placeholder = "Buscar peliculas"
-        // 4
+        
         navigationItem.searchController = searchController
-        // 5
+        
         definesPresentationContext = true
     }
     
@@ -61,12 +64,12 @@ class MoviesViewController: UIViewController , UITableViewDelegate , UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let movie:MovieModel
         if isFiltering {
-            movie = arrayOfMovies[indexPath.row]
+            movie = filteredMovies[indexPath.row]
         } else {
             movie = self.arrayOfMovies[indexPath.row]
         }
-        cell.movieTitle.text = movie.title
-        cell.movieYear.text = "\(movie.year)"
+        cell.movieTitle.text = movie.title == nil ? "" : movie.title!
+        cell.movieYear.text = "\(movie.year == nil ? 0 : movie.year!)"
         cell.movieOverview.text = "BelatrixChallenge."
         return cell
     }
@@ -81,12 +84,23 @@ class MoviesViewController: UIViewController , UITableViewDelegate , UITableView
     
     func loadMoreControl(didStartAnimating loadMoreControl: LoadMoreControl) {
         print("didStartAnimating")
-        pagination = pagination + 1
-        self.presenter.onFetchMovies(page: pagination) { movies in
-            self.arrayOfMovies.append(contentsOf: movies)
-            self.movies.reloadData()
-            loadMoreControl.stop()
+        if isFiltering {
+            paginationForFilter = paginationForFilter + 1
+            self.presenter.onSearchMovies(query: searchController.searchBar.text!, page: paginationForFilter) { searchedMovies in
+                self.filteredMovies.append(contentsOf: searchedMovies)
+                self.movies.reloadData()
+                loadMoreControl.stop()
+            }
         }
+        else {
+            pagination = pagination + 1
+            self.presenter.onFetchMovies(page: pagination) { movies in
+                self.arrayOfMovies.append(contentsOf: movies)
+                self.movies.reloadData()
+                loadMoreControl.stop()
+            }
+        }
+        
         
     }
     
@@ -123,15 +137,28 @@ extension MoviesViewController : MovieView {
 }
 
 extension MoviesViewController: UISearchResultsUpdating {
+    
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         filterContentForSearchText(searchBar.text!)
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredMovies = arrayOfMovies.filter { (movie: MovieModel) -> Bool in
-            return movie.title.lowercased().contains(searchText.lowercased())
+        
+        self.presenter.onSearchMovies(query: searchText.lowercased(), page: paginationForFilter) { searchedMovies in
+            self.filteredMovies = searchedMovies
+            self.movies.reloadData()
         }
-        movies.reloadData()
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        paginationForFilter = 1
+        pagination = 1
+        self.presenter.onFetchMovies(page: pagination) { movies in
+            self.arrayOfMovies = [MovieModel]()
+            self.filteredMovies = [MovieModel]()
+            self.arrayOfMovies = movies
+            self.movies.reloadData()
+        }
     }
 }

@@ -15,13 +15,13 @@ class MoviesService {
 
 extension MoviesService : MoviesAPI {
     
-    func searchMovies(query: String, completion: @escaping MoviesClosure) {
+    func searchMovies(query: String, page: Int, completion: @escaping MoviesClosure) {
         do {
             try MovieHttpRouter
-                .searchMovies(query: query)
+                .searchMovies(query: query, page : page)
                 .request(usingHttpService: httpService)
                 .responseJSON { (result) in
-                    let movies = MoviesService.parseMovies(result: result)
+                    let movies = MoviesService.parseSearchMovies(result: result)
                     completion(movies)
             }
         } catch  {
@@ -57,6 +57,25 @@ extension MoviesService {
         
         do {
             return try JSONDecoder().decode(Array<MovieModel>.self, from: data)
+        } catch  {
+            print("Something went grong parsing movies = \(error)")
+        }
+        return []
+    }
+    
+    private static func parseSearchMovies(result: DataResponse<Any>) -> [MovieModel] {
+        
+        guard [200,201].contains(result.response?.statusCode), let data = result.data else { return [] }
+        
+        do {
+            let anyResult: Any = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers])
+            let array = anyResult as? [[String: Any]]
+            var newArray = [[String:Any]]()
+            for filteredMovie in array! {
+                newArray.append(filteredMovie["movie"]! as! [String : Any])
+            }
+            let jsonData = try? JSONSerialization.data(withJSONObject:newArray)
+            return try JSONDecoder().decode(Array<MovieModel>.self, from: jsonData!)
         } catch  {
             print("Something went grong parsing movies = \(error)")
         }

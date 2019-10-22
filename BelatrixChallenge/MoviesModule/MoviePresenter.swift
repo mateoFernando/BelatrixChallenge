@@ -11,7 +11,7 @@ protocol MoviePresentation {
     
     func onFetchMovies(page:Int, completion : @escaping MoviesClosure ) -> Void
     func onFetchThumbnail(imageName:String, completion : @escaping (Data) -> Void ) -> Void
-    func onSearchMovies(query:String, completion : @escaping MoviesClosure ) -> Void
+    func onSearchMovies(query:String, page: Int, completion : @escaping MoviesClosure ) -> Void
 }
 
 class MoviePresenter : MoviePresentation {
@@ -22,7 +22,7 @@ class MoviePresenter : MoviePresentation {
     typealias UseCase = (
         getPopularMovies :(_ page: Int, _ completion: @escaping MoviesClosure) -> Void,
         fetchThumbnail : (_ imageName:String, _ completion: @escaping ImageClosure) -> Void,
-        searchMovie : (_ query:String, _ completion: @escaping MoviesClosure) -> Void
+        searchMovie : (_ query:String, _ page: Int, _ completion: @escaping MoviesClosure) -> Void
     )
     var useCase: UseCase?
     
@@ -36,10 +36,10 @@ class MoviePresenter : MoviePresentation {
 
 extension MoviePresenter {
     
-    func onSearchMovies(query: String, completion: @escaping MoviesClosure) {
+    func onSearchMovies(query: String, page:Int, completion: @escaping MoviesClosure) {
         
         DispatchQueue.main.async {
-            self.useCase?.searchMovie(query){ movies in
+            self.useCase?.searchMovie(query,page){ movies in
                 print("Load 10 movies: \(movies)")
                 completion(movies)
             }
