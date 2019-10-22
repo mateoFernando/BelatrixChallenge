@@ -26,6 +26,6 @@ extension MovieInteractor : MovieUseCase {
     }
     
     func searchMovies(query: String, completion: @escaping MoviesClosure) -> (Void) {
-        self.service.searchMoviews(query: query, completion: completion)
+        self.service.searchMovies(query: query, completion: completion)
     }
 }
