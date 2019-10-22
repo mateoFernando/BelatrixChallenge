@@ -10,5 +10,6 @@ typealias MoviesClosure = ([MovieModel]) -> (Void)
 
 protocol MoviesAPI {
     
-    func fetchPopularMoviews(completion: @escaping MoviesClosure) -> (Void)
+    func fetchPopularMoviews(page: Int, completion: @escaping MoviesClosure) -> (Void)
+    func searchMovies(query: String, completion: @escaping MoviesClosure) -> (Void)
 }

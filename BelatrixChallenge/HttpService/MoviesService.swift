@@ -15,10 +15,10 @@ class MoviesService {
 
 extension MoviesService : MoviesAPI {
     
-    func fetchPopularMoviews(completion: @escaping ([MovieModel]) -> (Void)) {
+    func searchMovies(query: String, completion: @escaping MoviesClosure) {
         do {
             try MovieHttpRouter
-                .getPopularMovies(page: 1)
+                .searchMovies(query: query)
                 .request(usingHttpService: httpService)
                 .responseJSON { (result) in
                     let movies = MoviesService.parseMovies(result: result)
@@ -28,6 +28,24 @@ extension MoviesService : MoviesAPI {
             print("Something went grong while fetching popular movies = \(error)")
         }
     }
+    
+    
+    func fetchPopularMoviews(page: Int, completion: @escaping ([MovieModel]) -> (Void)) {
+        do {
+            try MovieHttpRouter
+                .getPopularMovies(page: page)
+                .request(usingHttpService: httpService)
+                .responseJSON { (result) in
+                    let movies = MoviesService.parseMovies(result: result)
+                    completion(movies)
+            }
+        } catch  {
+            print("Something went grong while fetching popular movies = \(error)")
+        }
+    }
+    
+    
+    
 }
 
 

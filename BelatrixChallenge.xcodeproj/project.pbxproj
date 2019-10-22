@@ -27,6 +27,7 @@
 		C1119F53235D974800397A86 /* ImageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F52235D974800397A86 /* ImageInteractor.swift */; };
 		C1119F55235D97A400397A86 /* ImagesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F54235D97A400397A86 /* ImagesAPI.swift */; };
 		C1119F6E235E27D700397A86 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F6D235E27D700397A86 /* MovieCell.swift */; };
+		C1119F78235E986200397A86 /* LoadMoreControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F77235E986100397A86 /* LoadMoreControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		C1119F52235D974800397A86 /* ImageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInteractor.swift; sourceTree = "<group>"; };
 		C1119F54235D97A400397A86 /* ImagesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesAPI.swift; sourceTree = "<group>"; };
 		C1119F6D235E27D700397A86 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		C1119F77235E986100397A86 /* LoadMoreControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreControl.swift; sourceTree = "<group>"; };
 		C85252FD071C955425ADE848 /* Pods_BelatrixChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BelatrixChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 		C1119F22235C251F00397A86 /* BelatrixChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				C1119F76235E984900397A86 /* Helper */,
 				C1119F51235D972A00397A86 /* Interactors */,
 				C1119F4C235D5FB300397A86 /* HttpService */,
 				C1119F43235CFBBD00397A86 /* Service */,
@@ -176,6 +179,14 @@
 				C1119F6D235E27D700397A86 /* MovieCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C1119F76235E984900397A86 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C1119F77235E986100397A86 /* LoadMoreControl.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,6 +314,7 @@
 				C1119F3D235C2EDF00397A86 /* MovieInteractor.swift in Sources */,
 				C1119F42235C30A400397A86 /* MovieModuleBuilder.swift in Sources */,
 				C1119F4E235D5FCF00397A86 /* MovieAPI.swift in Sources */,
+				C1119F78235E986200397A86 /* LoadMoreControl.swift in Sources */,
 				C1119F26235C251F00397A86 /* MoviesViewController.swift in Sources */,
 				C1119F49235D031F00397A86 /* MovieHttpService.swift in Sources */,
 				C1119F45235CFC0600397A86 /* HttpRouter.swift in Sources */,

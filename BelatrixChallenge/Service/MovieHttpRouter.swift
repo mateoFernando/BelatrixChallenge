@@ -10,9 +10,8 @@ import Alamofire
 
 enum MovieHttpRouter {
     case getPopularMovies(page:Int)
-    case getMovies(categoryId: String)
+    case searchMovies(query: String)
 
-    case getFilteredMovies
 
     case downloadImage(imageName:String)
     case downloadThumbnail(imageName:String)
@@ -26,12 +25,10 @@ extension MovieHttpRouter : HttpRouter {
     
     var path: String {
         switch (self) {
-        case .getFilteredMovies:
-            return ""
         case .getPopularMovies:
             return "movies/popular"
-        case .getMovies(let categoryId):
-            return "/asd/{\(categoryId)}"
+        case .searchMovies:
+            return "/movies"
         case .downloadImage(let imageName):
             return "/asd/{\(imageName)}"
         case .downloadThumbnail(let imageName):
@@ -56,6 +53,8 @@ extension MovieHttpRouter : HttpRouter {
         switch self {
         case .getPopularMovies(let page):
             return ["page" : "\(page)"]
+        case .searchMovies(let query):
+            return ["query" : "\(query)"]
         default:
             return nil
         }
@@ -63,7 +62,7 @@ extension MovieHttpRouter : HttpRouter {
     
     func body() throws -> Data? {
         switch self {
-        case .getFilteredMovies, .getPopularMovies, .getMovies, .downloadThumbnail, .downloadImage:
+        case .getPopularMovies, .searchMovies, .downloadThumbnail, .downloadImage:
             return nil
         }
     }

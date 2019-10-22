@@ -9,8 +9,9 @@ import Foundation
 
 protocol MoviePresentation {
     
-    func viewDidLoad() -> Void
+    func onFetchMovies(page:Int, completion : @escaping MoviesClosure ) -> Void
     func onFetchThumbnail(imageName:String, completion : @escaping (Data) -> Void ) -> Void
+    func onSearchMovies(query:String, completion : @escaping MoviesClosure ) -> Void
 }
 
 class MoviePresenter : MoviePresentation {
@@ -19,9 +20,9 @@ class MoviePresenter : MoviePresentation {
     var interactor: MovieUseCase
     var router: MovieRouting
     typealias UseCase = (
-        getPopularMovies :(_ completion: @escaping MoviesClosure) -> Void,
-        getFilteredMovies : (_ completion: @escaping MoviesClosure) -> Void,
-        fetchThumbnail : (_ imageName:String, _ completion: @escaping ImageClosure) -> Void
+        getPopularMovies :(_ page: Int, _ completion: @escaping MoviesClosure) -> Void,
+        fetchThumbnail : (_ imageName:String, _ completion: @escaping ImageClosure) -> Void,
+        searchMovie : (_ query:String, _ completion: @escaping MoviesClosure) -> Void
     )
     var useCase: UseCase?
     
@@ -35,16 +36,27 @@ class MoviePresenter : MoviePresentation {
 
 extension MoviePresenter {
     
-    func viewDidLoad() {
-
+    func onSearchMovies(query: String, completion: @escaping MoviesClosure) {
+        
         DispatchQueue.main.async {
-            self.useCase?.getPopularMovies({ (movies) -> (Void) in
+            self.useCase?.searchMovie(query){ movies in
                 print("Load 10 movies: \(movies)")
-                self.view?.updateMovies(movies:movies)
-            })
-            
+                completion(movies)
+            }
         }
     }
+    
+    func onFetchMovies(page: Int, completion: @escaping (MoviesClosure) ) {
+        
+        DispatchQueue.main.async {
+            self.useCase?.getPopularMovies(page){ movies in
+                print("Load 10 movies: \(movies)")
+//                self.view?.updateMovies(movies:movies)
+                completion(movies)
+            }
+        }
+    }
+    
     
     func onFetchThumbnail(imageName: String, completion : @escaping (Data) -> Void ) {
         

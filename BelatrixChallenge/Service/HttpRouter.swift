@@ -34,6 +34,7 @@ extension HttpRouter {
         
         var request = try URLRequest(url: url, method: method, headers: headers)
         request.httpBody = try body()
+        request = try URLEncoding.default.encode(request, with: parameters)
         return request
     }
     

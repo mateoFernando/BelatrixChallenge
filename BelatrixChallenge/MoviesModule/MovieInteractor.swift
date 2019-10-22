@@ -21,7 +21,11 @@ class MovieInteractor {
 
 extension MovieInteractor : MovieUseCase {
     
-    func getPopularMovies(completion: @escaping MoviesClosure) -> (Void) {
-        self.service.fetchPopularMoviews(completion: completion)
+    func getPopularMovies(page: Int, completion: @escaping MoviesClosure) -> (Void) {
+        self.service.fetchPopularMoviews(page: page,completion: completion)
+    }
+    
+    func searchMovies(query: String, completion: @escaping MoviesClosure) -> (Void) {
+        self.service.searchMoviews(query: query, completion: completion)
     }
 }
