@@ -12,6 +12,8 @@ protocol MoviePresentation {
     func onFetchMovies(page:Int, completion : @escaping MoviesClosure ) -> Void
     func onFetchThumbnail(imageName:String, completion : @escaping (Data) -> Void ) -> Void
     func onSearchMovies(query:String, page: Int, completion : @escaping MoviesClosure ) -> Void
+    
+    func getImage(imageId: Int, completion: @escaping DataImageClosure) -> Void
 }
 
 class MoviePresenter : MoviePresentation {
@@ -22,7 +24,8 @@ class MoviePresenter : MoviePresentation {
     typealias UseCase = (
         getPopularMovies :(_ page: Int, _ completion: @escaping MoviesClosure) -> Void,
         fetchThumbnail : (_ imageName:String, _ completion: @escaping ImageClosure) -> Void,
-        searchMovie : (_ query:String, _ page: Int, _ completion: @escaping MoviesClosure) -> Void
+        searchMovie : (_ query:String, _ page: Int, _ completion: @escaping MoviesClosure) -> Void,
+        searchDetailMovie : (_ imageId: Int, _ completion: @escaping DataImageClosure) -> Void
     )
     var useCase: UseCase?
     
@@ -64,6 +67,16 @@ extension MoviePresenter {
             
             self.useCase?.fetchThumbnail(imageName){ data in
                 guard let data = data else { return }
+                completion(data)
+            }
+        }
+    }
+    
+    func getImage(imageId: Int, completion: @escaping DataImageClosure) {
+        
+        DispatchQueue.global(qos: .background).async {
+            
+            self.useCase?.searchDetailMovie(imageId){ data in
                 completion(data)
             }
         }

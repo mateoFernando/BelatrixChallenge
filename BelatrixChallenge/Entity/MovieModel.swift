@@ -11,12 +11,14 @@ struct MovieModel : Codable {
     let year : Int?
     let ids : MovieDetail?
     let overview : String?
+    var imageUrl : String?
     
     private enum CodingKeys: String, CodingKey {
         case title
         case year
         case ids
         case overview
+        case imageUrl
     }
 }
 

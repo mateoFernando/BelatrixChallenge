@@ -14,6 +14,16 @@ class MoviesService {
 }
 
 extension MoviesService : MoviesAPI {
+    func fetchMovie(movieId: Int, completion: @escaping DataImageClosure) {
+        do {
+            try MovieHttpRouter.findDataImage(imageId: movieId).request(usingHttpService: httpService).responseJSON(completionHandler: { result in
+                let detailImage = MoviesService.parseImageMovie(result: result)
+                completion(detailImage[0])
+            })
+        } catch  {
+            
+        }
+    }
     
     func searchMovies(query: String, page: Int, completion: @escaping MoviesClosure) {
         do {
@@ -81,6 +91,23 @@ extension MoviesService {
         }
         return []
     }
+    
+    private static func parseImageMovie(result: DataResponse<Any>) -> [DetailImageModel] {
+        
+        guard [200,201].contains(result.response?.statusCode), let data = result.data else { return [] }
+        
+        do {
+            let anyResult: Any = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers])
+            let dic = anyResult as? [String: Any]
+            var newArray = [[String:Any]]()
+            newArray = dic!["movieposter"] as! [[String : Any]]
+            let jsonData = try? JSONSerialization.data(withJSONObject:newArray)
+            return try JSONDecoder().decode(Array<DetailImageModel>.self, from: jsonData!)
+        } catch  {
+            print("Something went grong parsing movies = \(error)")
+        }
+        return []
+    }
 }
 
 extension MoviesService : ImagesAPI {
@@ -89,7 +116,7 @@ extension MoviesService : ImagesAPI {
         
         do {
             try MovieHttpRouter
-                .downloadThumbnail(imageName: imageName)
+                .downloadThumbnail(imageURL: imageName)
                 .request(usingHttpService: httpService)
                 .responseData(completionHandler: { (result) in
                     completion(result.data)
@@ -101,16 +128,7 @@ extension MoviesService : ImagesAPI {
     
     func fetchImage(imageName: String, completion: @escaping ImageClosure) {
         
-        do {
-            try MovieHttpRouter
-                .downloadImage(imageName: imageName)
-                .request(usingHttpService: httpService)
-                .responseData(completionHandler: { (result) in
-                    completion(result.data)
-                })
-        } catch  {
-            print("Something went grong while fetching thumbnail! = \(error)")
-        }
+        print("Hola Skeletito")
     }
     
     

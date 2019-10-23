@@ -62,15 +62,26 @@ class MoviesViewController: UIViewController , UITableViewDelegate , UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        let movie:MovieModel
-        if isFiltering {
-            movie = filteredMovies[indexPath.row]
-        } else {
-            movie = self.arrayOfMovies[indexPath.row]
-        }
+        var movie = isFiltering ? filteredMovies[indexPath.row] : arrayOfMovies[indexPath.row]
+        
         cell.movieTitle.text = movie.title == nil ? "" : movie.title!
         cell.movieYear.text = "\(movie.year == nil ? 0 : movie.year!)"
         cell.movieOverview.text = movie.overview == nil ? "" : movie.overview!
+        
+        if movie.imageUrl == nil {
+            self.presenter.getImage(imageId: (movie.ids?.tmdb!)!) { detailImage -> (Void) in
+                
+                movie.imageUrl = detailImage.url!
+                
+                DispatchQueue.global(qos: .background).async {
+                    self.presenter.onFetchThumbnail(imageName: detailImage.url!, completion: { data in
+                        
+                        cell.movieImage.image = UIImage(data: data)
+                        cell.reloadInputViews()
+                    })
+                }
+            }
+        }
         return cell
     }
     

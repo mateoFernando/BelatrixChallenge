@@ -28,4 +28,9 @@ extension MovieInteractor : MovieUseCase {
     func searchMovies(query: String,page: Int, completion: @escaping MoviesClosure) -> (Void) {
         self.service.searchMovies(query: query, page:page, completion: completion)
     }
+    
+    func searchDetailMovie(imageId: Int, completion: @escaping DataImageClosure ) -> (Void) {
+        self.service.fetchMovie(movieId: imageId, completion: completion)
+    }
+    
 }

@@ -30,7 +30,9 @@ extension HttpRouter {
     func asURLRequest() throws -> URLRequest {
         
         var url = try baseUrlString.asURL()
-        url.appendPathComponent(path)
+        if path != "" {
+            url.appendPathComponent(path)
+        }
         
         var request = try URLRequest(url: url, method: method, headers: headers)
         request.httpBody = try body()

@@ -28,6 +28,7 @@
 		C1119F55235D97A400397A86 /* ImagesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F54235D97A400397A86 /* ImagesAPI.swift */; };
 		C1119F6E235E27D700397A86 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F6D235E27D700397A86 /* MovieCell.swift */; };
 		C1119F78235E986200397A86 /* LoadMoreControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1119F77235E986100397A86 /* LoadMoreControl.swift */; };
+		C154845C235FF3D300C7C7CA /* DetailImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C154845B235FF3D300C7C7CA /* DetailImageModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		C1119F54235D97A400397A86 /* ImagesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesAPI.swift; sourceTree = "<group>"; };
 		C1119F6D235E27D700397A86 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		C1119F77235E986100397A86 /* LoadMoreControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreControl.swift; sourceTree = "<group>"; };
+		C154845B235FF3D300C7C7CA /* DetailImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageModel.swift; sourceTree = "<group>"; };
 		C85252FD071C955425ADE848 /* Pods_BelatrixChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BelatrixChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				C1119F3F235C300300397A86 /* MovieModel.swift */,
+				C154845B235FF3D300C7C7CA /* DetailImageModel.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				C1119F6E235E27D700397A86 /* MovieCell.swift in Sources */,
 				C1119F3B235C2EA600397A86 /* MovieRouter.swift in Sources */,
 				C1119F50235D693800397A86 /* MoviesService.swift in Sources */,
+				C154845C235FF3D300C7C7CA /* DetailImageModel.swift in Sources */,
 				C1119F39235C2E3A00397A86 /* MoviePresenter.swift in Sources */,
 				C1119F53235D974800397A86 /* ImageInteractor.swift in Sources */,
 				C1119F24235C251F00397A86 /* AppDelegate.swift in Sources */,

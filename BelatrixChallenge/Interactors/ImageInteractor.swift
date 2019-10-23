@@ -23,5 +23,6 @@ extension ImageInteractor {
     func fetchImage(imageName:String, completion: @escaping ImageClosure) -> Void {
         self.service.fetchImage(imageName: imageName, completion: completion)
     }
+    
 }
 

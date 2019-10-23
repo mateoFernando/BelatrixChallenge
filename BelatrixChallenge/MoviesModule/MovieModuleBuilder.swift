@@ -20,7 +20,8 @@ class MoviewModuleBuilder {
         let presenter = MoviePresenter(view: view, interactor: interactor, router: router,useCase:(
             getPopularMovies: interactor.getPopularMovies,
             fetchThumbnail: imageInteractor.fetchThumbnail,
-            searchMovie : interactor.searchMovies)  )
+            searchMovie : interactor.searchMovies,
+            searchDetailMovie : interactor.searchDetailMovie )  )
         view.presenter = presenter
         return view
     }
