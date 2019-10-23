@@ -52,10 +52,12 @@ extension MovieHttpRouter : HttpRouter {
     var parameters: Parameters? {
         switch self {
         case .getPopularMovies(let page):
-            return ["page" : "\(page)"]
+            return ["page" : "\(page)",
+                "extended" : "full"]
         case .searchMovies(let query, let page):
             return ["query" : "\(query)",
-            "page" : "\(page)",]
+            "page" : "\(page)",
+            "extended" : "full"]
         default:
             return nil
         }

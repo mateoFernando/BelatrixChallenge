@@ -70,7 +70,7 @@ class MoviesViewController: UIViewController , UITableViewDelegate , UITableView
         }
         cell.movieTitle.text = movie.title == nil ? "" : movie.title!
         cell.movieYear.text = "\(movie.year == nil ? 0 : movie.year!)"
-        cell.movieOverview.text = "BelatrixChallenge."
+        cell.movieOverview.text = movie.overview == nil ? "" : movie.overview!
         return cell
     }
     
